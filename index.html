@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JLPT N4 Bunpo & Kanji Rush</title>
+    <meta name="description" content="Module belajar interaktif pola kalimat JLPT N4 dan latihan Kanji Rush 3 Detik.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background animated elements -->
+    <div class="bg-decoration">
+        <div class="bg-circle bg-circle-1"></div>
+        <div class="bg-circle bg-circle-2"></div>
+        <div class="bg-circle bg-circle-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-brand">
+            <span class="nav-logo">文/漢</span>
+            <span class="nav-title">N4 Hub</span>
+        </div>
+        <div class="nav-links" id="navLinks">
+            <a href="#hero" class="nav-link active" data-section="hero">Beranda</a>
+            <a href="#kanji" class="nav-link" data-section="kanji">Kanji</a>
+            <a href="#bab1" class="nav-link" data-section="bab1">BAB 1</a>
+            <a href="#bab2" class="nav-link" data-section="bab2">BAB 2</a>
+            <a href="#bab3" class="nav-link" data-section="bab3">BAB 3</a>
+            <a href="#quiz" class="nav-link" data-section="quiz">Kuis</a>
+        </div>
+        <div class="nav-progress-container">
+            <div class="nav-progress-bar" id="progressBar"></div>
+            <span class="nav-progress-text" id="progressText">0%</span>
+        </div>
+        <div class="theme-toggle" id="themeToggle" title="Ganti mode terang/gelap" role="button" tabindex="0" aria-label="Toggle light/dark theme">
+            <span class="theme-toggle-icon" id="themeIconDark">🌙</span>
+            <div class="theme-toggle-track">
+                <div class="theme-toggle-thumb"></div>
+            </div>
+            <span class="theme-toggle-icon" id="themeIconLight">☀️</span>
+        </div>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-badge">📚 Grammar & Kanji N4</div>
+            <h1 class="hero-title">
+                <span class="hero-title-jp">文法・漢字マスター</span>
+                <span class="hero-title-main">JLPT N4 <span class="gradient-text">Complete</span></span>
+                <span class="hero-title-sub">Super Lengkap — Auto Lulus!</span>
+            </h1>
+            <p class="hero-desc">
+                Module belajar interaktif yang mencakup seluruh pola kalimat JLPT N4 dan latihan Kanji (N5 & N4) dengan metode 3 Detik.
+            </p>
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <span class="stat-number">3</span>
+                    <span class="stat-label">BAB Bunpo</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">300+</span>
+                    <span class="stat-label">Kanji N4</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">∞</span>
+                    <span class="stat-label">Latihan</span>
+                </div>
+            </div>
+            <div class="hero-actions">
+                <a href="#kanji" class="btn btn-primary">Mulai Belajar →</a>
+                <a href="#quiz" class="btn btn-secondary">Langsung Kuis</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="floating-kanji kanji-1">文</div>
+            <div class="floating-kanji kanji-2">法</div>
+            <div class="floating-kanji kanji-3">漢</div>
+            <div class="floating-kanji kanji-4">字</div>
+            <div class="floating-kanji kanji-5">習</div>
+        </div>
+    </section>
+
+    <!-- Kanji Section -->
+    <section class="chapter" id="kanji">
+        <div class="chapter-header">
+            <div class="chapter-number">漢字</div>
+            <h2 class="chapter-title">Daftar Kanji</h2>
+            <p class="chapter-subtitle">Kanji dasar JLPT N5 dan N4</p>
+            <div class="radio-group" style="margin-top: 15px; justify-content: center; display: flex; gap: 15px;">
+                <label>
+                    <input type="radio" name="kanjiLevelDisplay" value="n5"> N5
+                </label>
+                <label>
+                    <input type="radio" name="kanjiLevelDisplay" value="n4" checked> N4
+                </label>
+            </div>
+        </div>
+        <div class="grammar-grid" id="kanjiGrid">
+            <!-- Kanji cards will be inserted by JS -->
+        </div>
+    </section>
+
+    <!-- BAB 1 -->
+    <section class="chapter" id="bab1">
+        <div class="chapter-header">
+            <div class="chapter-number">BAB 1</div>
+            <h2 class="chapter-title">Pola Kalimat Tambahan</h2>
+            <p class="chapter-subtitle">Materi di luar Minna no Nihongo — penting untuk JLPT N4!</p>
+        </div>
+        <div class="grammar-grid" id="bab1Grid">
+            <!-- Grammar cards will be inserted by JS -->
+        </div>
+    </section>
+
+    <!-- BAB 2 -->
+    <section class="chapter" id="bab2">
+        <div class="chapter-header">
+            <div class="chapter-number">BAB 2</div>
+            <h2 class="chapter-title">Minna no Nihongo I</h2>
+            <p class="chapter-subtitle">Pola kalimat dasar dari buku Minna no Nihongo jilid 1</p>
+        </div>
+        <div class="grammar-grid" id="bab2Grid">
+            <!-- Grammar cards will be inserted by JS -->
+        </div>
+    </section>
+
+    <!-- BAB 3 -->
+    <section class="chapter" id="bab3">
+        <div class="chapter-header">
+            <div class="chapter-number">BAB 3</div>
+            <h2 class="chapter-title">Minna no Nihongo II</h2>
+            <p class="chapter-subtitle">Pola kalimat lanjutan dari buku Minna no Nihongo jilid 2</p>
+        </div>
+        <div class="grammar-grid" id="bab3Grid">
+            <!-- Grammar cards will be inserted by JS -->
+        </div>
+    </section>
+
+    <!-- Modal (For both Grammar and Kanji Details) -->
+    <div class="modal-overlay" id="kanji-modal">
+        <div class="modal-content glass-card" id="modalContent">
+            <button class="btn-close" id="btn-close-modal">&times;</button>
+            <div class="modal-kanji" id="modal-kanji">漢字</div>
+            <div class="modal-reading" id="modal-reading">かんじ</div>
+            <div class="modal-meaning" id="modal-meaning">Kanji</div>
+            
+            <!-- Grammar Specific Fields (hidden by default) -->
+            <div id="modal-grammar-details" class="modal-grammar-details hidden">
+                <div class="modal-detail-row">
+                    <span class="detail-label">Rumus:</span>
+                    <span id="modal-grammar-formula" class="detail-val"></span>
+                </div>
+                <div class="modal-detail-row text-left">
+                    <span class="detail-label">Penjelasan:</span>
+                    <p id="modal-grammar-explanation" class="detail-val explanation-p"></p>
+                </div>
+                <div id="modal-grammar-note-container" class="modal-detail-row text-left">
+                    <span class="detail-label">Catatan:</span>
+                    <p id="modal-grammar-note" class="detail-val note-p"></p>
+                </div>
+            </div>
+
+            <div class="modal-example">
+                <h4>Contoh Kalimat:</h4>
+                <div id="modal-example-text" class="example-container">
+                    <!-- Parsed example will be injected here -->
+                </div>
+            </div>
+            
+            <div class="modal-actions" style="margin-top: 20px;">
+                <button id="btn-toggle-learned" class="btn-primary btn-large" style="width: 100%;">📌 Tandai Sudah Dipelajari</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz Section -->
+    <section class="quiz-section" id="quiz">
+        <div class="chapter-header">
+            <div class="chapter-number">🎯</div>
+            <h2 class="chapter-title">Kuis Interaktif</h2>
+            <p class="chapter-subtitle">Uji pemahamanmu tentang Kanji & Tata Bahasa JLPT N4!</p>
+        </div>
+        
+        <div class="quiz-container" id="quizContainer">
+            
+            <!-- Quiz Config Screen -->
+            <div id="start-screen" class="screen active">
+                <div class="glass-card intro-card" style="margin: 0; max-width: 100%;">
+                    <h2>Pengaturan Kuis</h2>
+                    <div class="settings-group">
+                        <p class="settings-title">Pilih Mode Kuis:</p>
+                        <div class="mode-toggle-container">
+                            <button type="button" id="mode-kanji" class="btn-mode active">🌸 Kanji Rush (3 Detik)</button>
+                            <button type="button" id="mode-grammar" class="btn-mode">📚 Kuis Tata Bahasa</button>
+                        </div>
+                    </div>
+
+                    <div id="setting-kanji-group" class="settings-group">
+                        <p class="settings-title">Pilih Level Kanji:</p>
+                        <div class="radio-group" style="justify-content: center; display: flex; gap: 15px;">
+                            <label><input type="radio" name="deckMode" value="n5"> N5</label>
+                            <label><input type="radio" name="deckMode" value="n4" checked> N4</label>
+                        </div>
+                    </div>
+
+                    <div id="setting-grammar-group" class="settings-group hidden">
+                        <p class="settings-title">Pilih Bab Tata Bahasa:</p>
+                        <div class="radio-group" style="justify-content: center; display: flex; gap: 15px; flex-wrap: wrap;">
+                            <label><input type="radio" name="grammarBab" value="1" checked> Bab 1</label>
+                            <label><input type="radio" name="grammarBab" value="2"> Bab 2</label>
+                            <label><input type="radio" name="grammarBab" value="3"> Bab 3</label>
+                            <label><input type="radio" name="grammarBab" value="all"> Semua</label>
+                        </div>
+                    </div>
+
+                    <div class="settings-group">
+                        <p class="settings-title">Urutan:</p>
+                        <div class="radio-group" style="justify-content: center; display: flex; gap: 15px;">
+                            <label><input type="radio" name="playMode" value="acak" checked> Acak</label>
+                            <label><input type="radio" name="playMode" value="berurutan"> Berurutan</label>
+                        </div>
+                    </div>
+
+                    <div class="main-actions" style="margin-top: 20px;">
+                        <button id="btn-start" class="btn-primary" style="width: 100%;">⚡ Mulai Kuis</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz Active Screen (Flashcard / MCQ) -->
+            <div id="flashcard-screen" class="screen" style="display:none;">
+                <div class="quiz-header" style="justify-content: space-between; margin-bottom: 20px; display: flex; align-items: center;">
+                    <div class="quiz-score" style="font-weight: 600;">Benar: <span id="score-correct" class="text-success">0</span></div>
+                    <div class="quiz-score" style="font-weight: 600;">Salah: <span id="score-incorrect" class="text-danger">0</span></div>
+                    <div class="quiz-score" style="font-weight: 600;">Sisa: <span id="score-remaining">0</span></div>
+                </div>
+
+                <div class="timer-container">
+                    <div class="timer-bar" id="timer-bar"></div>
+                </div>
+                
+                <div class="flashcard-container" id="flashcard" style="margin: 0 auto;">
+                    <div class="flashcard-inner">
+                        <!-- Front -->
+                        <div class="flashcard-front">
+                            <div class="kanji-display" id="kanji-text">漢字</div>
+                            <div id="grammar-question-container" class="grammar-question-container hidden">
+                                <div class="grammar-question" id="grammar-q-text">Pertanyaan</div>
+                                <div class="grammar-hint" id="grammar-q-hint">Hint</div>
+                            </div>
+                            <div class="instruction">Waktu berjalan...</div>
+                        </div>
+                        <!-- Back -->
+                        <div class="flashcard-back">
+                            <div class="reading-display" id="reading-text">かんじ</div>
+                            <div class="meaning-display" id="meaning-text">Kanji</div>
+                            <div id="grammar-back-details" class="grammar-back-details hidden">
+                                <div class="grammar-explanation-title">Penjelasan:</div>
+                                <div class="grammar-explanation" id="grammar-exp-text">...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="quiz-options" class="quiz-options-container" style="margin-top: 20px;">
+                    <!-- MCQ Options -->
+                </div>
+
+                <div class="controls hidden" style="margin-top: 20px;">
+                    <button id="btn-reveal" class="btn-primary btn-large" style="width: 100%;">Buka Jawaban (Spasi)</button>
+                    <div id="score-controls" class="score-controls hidden" style="display: flex; gap: 10px; width: 100%;">
+                        <button id="btn-wrong" class="btn-danger" style="flex:1; padding: 15px;">Lupa (Kiri)</button>
+                        <button id="btn-correct" class="btn-success" style="flex:1; padding: 15px;">Hafal (Kanan)</button>
+                    </div>
+                </div>
+                <button id="btn-quiz-back" class="btn-secondary btn-large btn-back-quiz" style="margin-top: 15px; width:100%;">Berhenti Kuis</button>
+            </div>
+
+            <!-- Quiz Result Screen -->
+            <div id="result-screen" class="screen" style="display:none;">
+                <div class="glass-card intro-card" style="margin: 0 auto; text-align: center;">
+                    <h2>Latihan Selesai! 🎉</h2>
+                    <div id="result-icon" style="font-size: 4rem; margin: 15px 0 5px;">🏆</div>
+                    <h3 id="result-title" style="margin-bottom: 10px;">Luar Biasa!</h3>
+                    <div id="result-stars" style="font-size: 1.5rem; color: #fbbf24; margin-bottom: 15px;">⭐⭐⭐⭐⭐</div>
+                    <div class="final-stats">
+                        <p>Total Benar: <strong id="final-correct" class="text-success">0</strong></p>
+                        <p>Perlu Diulang: <strong id="final-incorrect" class="text-danger">0</strong></p>
+                    </div>
+                    <p id="result-message" style="color: var(--text-muted); margin: 0 0 25px; line-height: 1.5;"></p>
+                    <button id="btn-restart" class="btn-primary" style="width: 100%;">Kuis Lagi</button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span class="nav-logo">文/漢</span>
+                <span>JLPT N4 Hub</span>
+            </div>
+            <p class="footer-note">
+                Module belajar JLPT N4 digabung dengan fitur Kanji Rush 3 Detik!
+            </p>
+            <p class="footer-copy">© 2026 • Selamat belajar! 頑張ってね！ 🌸</p>
+        </div>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
