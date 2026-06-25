@@ -101,7 +101,7 @@ let incorrectCount = 0;
 let timerAnimation;
 let isFlipped = false;
 let startTime;
-let currentMode = 'kanji'; // 'kanji' or 'grammar'
+let currentMode = 'kanji'; // 'kanji', 'grammar', or 'particle'
 let learnedItems = JSON.parse(localStorage.getItem('jlpt-n4-learned') || '[]');
 let currentModalItem = null;
 let currentModalMode = 'kanji';
@@ -135,6 +135,10 @@ const UI = {
     bab1Grid: document.getElementById('bab1Grid'),
     bab2Grid: document.getElementById('bab2Grid'),
     bab3Grid: document.getElementById('bab3Grid'),
+    kakujoshiGrid: document.getElementById('kakujoshiGrid'),
+    setsuzokujoshiGrid: document.getElementById('setsuzokujoshiGrid'),
+    fukujoshiGrid: document.getElementById('fukujoshiGrid'),
+    shuujoshiGrid: document.getElementById('shuujoshiGrid'),
     
     // Modal
     kanjiModal: document.getElementById('kanji-modal'),
@@ -147,8 +151,10 @@ const UI = {
     // Mode & Grammar elements
     modeKanji: document.getElementById('mode-kanji'),
     modeGrammar: document.getElementById('mode-grammar'),
+    modeParticle: document.getElementById('mode-particle'),
     settingKanjiGroup: document.getElementById('setting-kanji-group'),
     settingGrammarGroup: document.getElementById('setting-grammar-group'),
+    settingParticleGroup: document.getElementById('setting-particle-group'),
     grammarQuestionContainer: document.getElementById('grammar-question-container'),
     grammarQText: document.getElementById('grammar-q-text'),
     grammarQHint: document.getElementById('grammar-q-hint'),
@@ -209,16 +215,30 @@ function init() {
         currentMode = 'kanji';
         UI.modeKanji.classList.add('active');
         UI.modeGrammar.classList.remove('active');
+        UI.modeParticle.classList.remove('active');
         UI.settingKanjiGroup.classList.remove('hidden');
         UI.settingGrammarGroup.classList.add('hidden');
+        UI.settingParticleGroup.classList.add('hidden');
     });
 
     UI.modeGrammar.addEventListener('click', () => {
         currentMode = 'grammar';
         UI.modeKanji.classList.remove('active');
         UI.modeGrammar.classList.add('active');
+        UI.modeParticle.classList.remove('active');
         UI.settingKanjiGroup.classList.add('hidden');
         UI.settingGrammarGroup.classList.remove('hidden');
+        UI.settingParticleGroup.classList.add('hidden');
+    });
+
+    UI.modeParticle.addEventListener('click', () => {
+        currentMode = 'particle';
+        UI.modeKanji.classList.remove('active');
+        UI.modeGrammar.classList.remove('active');
+        UI.modeParticle.classList.add('active');
+        UI.settingKanjiGroup.classList.add('hidden');
+        UI.settingGrammarGroup.classList.add('hidden');
+        UI.settingParticleGroup.classList.remove('hidden');
     });
 
     // Handle Kanji level toggle in the view
@@ -289,8 +309,13 @@ function initNavigation() {
 }
 
 function updateLearningProgress() {
+    const particleCount = (typeof particleData !== 'undefined') 
+        ? particleData.kakujoshi.length + particleData.setsuzokujoshi.length + 
+          particleData.fukujoshi.length + particleData.shuujoshi.length 
+        : 0;
     const totalItems = vocabulariesN4.length + vocabulariesN5.length + 
-                       (typeof grammarData !== 'undefined' ? grammarData.bab1.length + grammarData.bab2.length + grammarData.bab3.length : 0);
+                       (typeof grammarData !== 'undefined' ? grammarData.bab1.length + grammarData.bab2.length + grammarData.bab3.length : 0) +
+                       particleCount;
     const learnedCount = learnedItems.length;
     const percentage = totalItems > 0 ? Math.round((learnedCount / totalItems) * 100) : 0;
     UI.progressText.textContent = percentage + '%';
@@ -303,6 +328,13 @@ function renderAllGrids() {
         renderGrammarGrid(UI.bab1Grid, grammarData.bab1);
         renderGrammarGrid(UI.bab2Grid, grammarData.bab2);
         renderGrammarGrid(UI.bab3Grid, grammarData.bab3);
+    }
+
+    if (typeof particleData !== 'undefined') {
+        renderParticleGrid(UI.kakujoshiGrid, particleData.kakujoshi);
+        renderParticleGrid(UI.setsuzokujoshiGrid, particleData.setsuzokujoshi);
+        renderParticleGrid(UI.fukujoshiGrid, particleData.fukujoshi);
+        renderParticleGrid(UI.shuujoshiGrid, particleData.shuujoshi);
     }
 }
 
@@ -343,6 +375,32 @@ function renderGrammarGrid(container, dataArray) {
     });
 }
 
+function renderParticleGrid(container, dataArray) {
+    if (!container) return;
+    container.innerHTML = '';
+
+    dataArray.forEach((p) => {
+        const isLearned = learnedItems.includes(p.id);
+        const div = document.createElement('div');
+        div.className = `kanji-preview-card particle-card ${isLearned ? 'learned' : ''}`;
+
+        const categoryColor = {
+            'Kakujoshi': 'var(--accent)',
+            'Setsuzokujoshi': '#10b981',
+            'Fukujoshi': '#f59e0b',
+            'Shuujoshi': '#8b5cf6'
+        }[p.category] || 'var(--accent)';
+
+        div.innerHTML = `
+            <div class="preview-kanji" style="font-size: 1.8rem; color: ${categoryColor};">${p.particle}</div>
+            <span class="preview-grammar-meaning" style="color: ${categoryColor}; margin-bottom: 4px; font-weight: 600;">${p.romaji}</span>
+            <span class="preview-meaning" style="font-size: 0.78rem; line-height: 1.3;">${p.meaning}</span>
+        `;
+        div.addEventListener('click', () => openModal(p, 'particle'));
+        container.appendChild(div);
+    });
+}
+
 function switchScreen(screenName) {
     Object.values(screens).forEach(s => s.style.display = 'none');
     screens[screenName].style.display = 'flex';
@@ -374,7 +432,7 @@ function startSession() {
         const deckMode = document.querySelector('input[name="deckMode"]:checked').value;
         activeDatabase = (deckMode === 'n4') ? vocabulariesN4 : vocabulariesN5;
         currentDeck = [...activeDatabase];
-    } else {
+    } else if (currentMode === 'grammar') {
         const bab = document.querySelector('input[name="grammarBab"]:checked').value;
         if (bab === 'all') {
             currentDeck = [...quizQuestions];
@@ -382,6 +440,28 @@ function startSession() {
             const babNum = parseInt(bab);
             currentDeck = quizQuestions.filter(q => q.bab === babNum);
         }
+        activeDatabase = [...currentDeck];
+    } else if (currentMode === 'particle') {
+        const cat = document.querySelector('input[name="particleCategory"]:checked').value;
+        let pool = [];
+        if (cat === 'all') {
+            pool = [...particleData.kakujoshi, ...particleData.setsuzokujoshi,
+                    ...particleData.fukujoshi, ...particleData.shuujoshi];
+        } else {
+            pool = [...particleData[cat]];
+        }
+        // Convert particle entries to quiz-question format
+        currentDeck = pool.map(p => {
+            const opts = generateParticleOptions(p, pool);
+            return {
+                _type: 'particle',
+                _particleData: p,
+                question: `Partikel「${p.particle}」(${p.romaji}) — Apa fungsi utamanya?`,
+                answers: opts.answers,
+                correct: opts.correctIdx,
+                explanation: `[${p.particle}] ${p.explanation}`
+            };
+        });
         activeDatabase = [...currentDeck];
     }
     
@@ -416,6 +496,30 @@ function generateOptions(correctVocab) {
     }
     
     return shuffle(options);
+}
+
+function generateParticleOptions(correctParticle, pool) {
+    // Correct answer is always index 0 in the answers array (quiz format uses correct: 0)
+    const correct = correctParticle.meaning;
+    const distractors = pool
+        .filter(p => p.id !== correctParticle.id)
+        .map(p => p.meaning);
+    const shuffledDistractors = shuffle([...distractors]);
+    const options = [correct, ...shuffledDistractors.slice(0, 3)];
+    while (options.length < 4) {
+        options.push('Opsi Tambahan ' + options.length);
+    }
+    // Shuffle but track where correct went
+    const shuffled = [...options];
+    // Keep correct at index 0 initially (answered by the quiz correct:0 convention)
+    // Actually re-shuffle with tracking:
+    const correctVal = options[0];
+    const finalOptions = shuffle(shuffled);
+    // Since quiz engine checks answers[correct] where correct is an index,
+    // we need to update correct index after shuffle
+    // We store the correct VALUE and find its new index
+    const newCorrectIdx = finalOptions.indexOf(correctVal);
+    return { answers: finalOptions, correctIdx: newCorrectIdx };
 }
 
 function loadCard() {
@@ -654,8 +758,54 @@ function openModal(vocab, mode) {
         } else {
             UI.modalExample.textContent = exText || "(Contoh kalimat belum tersedia)";
         }
+    } else if (mode === 'particle') {
+        const p = vocab;
+        const categoryColor = {
+            'Kakujoshi': 'var(--accent)',
+            'Setsuzokujoshi': '#10b981',
+            'Fukujoshi': '#f59e0b',
+            'Shuujoshi': '#8b5cf6'
+        }[p.category] || 'var(--accent)';
+
+        UI.modalKanji.textContent = p.particle;
+        UI.modalKanji.style.color = categoryColor;
+        UI.modalReading.textContent = `${p.romaji}  ·  ${p.category}`;
+        UI.modalReading.classList.remove('hidden');
+        UI.modalMeaning.textContent = p.meaning;
+        UI.modalGrammarDetails.classList.remove('hidden');
+
+        UI.modalGrammarFormula.textContent = p.formula;
+        UI.modalGrammarExplanation.textContent = p.explanation;
+
+        if (p.note) {
+            UI.modalGrammarNoteContainer.classList.remove('hidden');
+            UI.modalGrammarNote.textContent = p.note;
+        } else {
+            UI.modalGrammarNoteContainer.classList.add('hidden');
+        }
+
+        if (p.examples && p.examples.length > 0) {
+            let html = '';
+            p.examples.forEach(ex => {
+                html += `
+                    <div class="example-item">
+                        <div class="ex-jp">${ex.jp}</div>
+                        <div class="ex-rm">${ex.romaji}</div>
+                        <div class="ex-id">${ex.id}</div>
+                    </div>
+                `;
+            });
+            UI.modalExample.innerHTML = html;
+        } else {
+            UI.modalExample.textContent = '(Contoh kalimat belum tersedia)';
+        }
+        
+        // Reset kanji color for future uses
+        UI.modalKanji.style.color = '';
     } else {
+        // Grammar mode
         UI.modalKanji.textContent = vocab.pattern;
+        UI.modalKanji.style.color = '';
         UI.modalReading.classList.add('hidden');
         UI.modalMeaning.textContent = vocab.meaning;
         UI.modalGrammarDetails.classList.remove('hidden');

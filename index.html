@@ -30,6 +30,7 @@
             <a href="#bab1" class="nav-link" data-section="bab1">BAB 1</a>
             <a href="#bab2" class="nav-link" data-section="bab2">BAB 2</a>
             <a href="#bab3" class="nav-link" data-section="bab3">BAB 3</a>
+            <a href="#partikel" class="nav-link" data-section="partikel">Partikel</a>
             <a href="#quiz" class="nav-link" data-section="quiz">Kuis</a>
         </div>
         <div class="nav-progress-container">
@@ -144,6 +145,55 @@
         </div>
     </section>
 
+    <!-- Partikel Section -->
+    <section class="chapter" id="partikel">
+        <div class="chapter-header">
+            <div class="chapter-number">助詞</div>
+            <h2 class="chapter-title">Partikel Bahasa Jepang</h2>
+            <p class="chapter-subtitle">Panduan lengkap 45 partikel — Kakujoshi, Setsuzokujoshi, Fukujoshi & Shuujoshi</p>
+        </div>
+
+        <!-- Kakujoshi -->
+        <div class="particle-category-header">
+            <div class="particle-category-badge kakujoshi-badge">格助詞</div>
+            <h3 class="particle-category-title">Kakujoshi <span class="particle-category-sub">(Partikel Kasus)</span></h3>
+            <p class="particle-category-desc">Menandai hubungan gramatikal kata benda dengan predikat: topik, subjek, objek, tempat, arah, dll.</p>
+        </div>
+        <div class="grammar-grid" id="kakujoshiGrid">
+            <!-- Particle cards will be inserted by JS -->
+        </div>
+
+        <!-- Setsuzokujoshi -->
+        <div class="particle-category-header" style="margin-top: 48px;">
+            <div class="particle-category-badge setsuzoku-badge">接続助詞</div>
+            <h3 class="particle-category-title">Setsuzokujoshi <span class="particle-category-sub">(Partikel Konjungtif)</span></h3>
+            <p class="particle-category-desc">Menghubungkan klausa atau kalimat: urutan, alasan, kontras, kondisi, dll.</p>
+        </div>
+        <div class="grammar-grid" id="setsuzokujoshiGrid">
+            <!-- Particle cards will be inserted by JS -->
+        </div>
+
+        <!-- Fukujoshi -->
+        <div class="particle-category-header" style="margin-top: 48px;">
+            <div class="particle-category-badge fukujoshi-badge">副助詞</div>
+            <h3 class="particle-category-title">Fukujoshi <span class="particle-category-sub">(Partikel Adverbial)</span></h3>
+            <p class="particle-category-desc">Menambahkan nuansa khusus: inklusivitas, pembatasan, perbandingan, penekanan, dll.</p>
+        </div>
+        <div class="grammar-grid" id="fukujoshiGrid">
+            <!-- Particle cards will be inserted by JS -->
+        </div>
+
+        <!-- Shuujoshi -->
+        <div class="particle-category-header" style="margin-top: 48px;">
+            <div class="particle-category-badge shuujoshi-badge">終助詞</div>
+            <h3 class="particle-category-title">Shuujoshi <span class="particle-category-sub">(Partikel Akhir Kalimat)</span></h3>
+            <p class="particle-category-desc">Diletakkan di akhir kalimat untuk mengekspresikan nuansa emosi, konfirmasi, pertanyaan, dll.</p>
+        </div>
+        <div class="grammar-grid" id="shuujoshiGrid">
+            <!-- Particle cards will be inserted by JS -->
+        </div>
+    </section>
+
     <!-- Modal (For both Grammar and Kanji Details) -->
     <div class="modal-overlay" id="kanji-modal">
         <div class="modal-content glass-card" id="modalContent">
@@ -200,6 +250,7 @@
                         <div class="mode-toggle-container">
                             <button type="button" id="mode-kanji" class="btn-mode active">🌸 Kanji Rush (3 Detik)</button>
                             <button type="button" id="mode-grammar" class="btn-mode">📚 Kuis Tata Bahasa</button>
+                            <button type="button" id="mode-particle" class="btn-mode">🔤 Kuis Partikel</button>
                         </div>
                     </div>
 
@@ -218,6 +269,17 @@
                             <label><input type="radio" name="grammarBab" value="2"> Bab 2</label>
                             <label><input type="radio" name="grammarBab" value="3"> Bab 3</label>
                             <label><input type="radio" name="grammarBab" value="all"> Semua</label>
+                        </div>
+                    </div>
+
+                    <div id="setting-particle-group" class="settings-group hidden">
+                        <p class="settings-title">Pilih Kategori Partikel:</p>
+                        <div class="radio-group" style="justify-content: center; display: flex; gap: 15px; flex-wrap: wrap;">
+                            <label><input type="radio" name="particleCategory" value="kakujoshi" checked> 格助詞 Kakujoshi</label>
+                            <label><input type="radio" name="particleCategory" value="setsuzokujoshi"> 接続 Setsuzoku</label>
+                            <label><input type="radio" name="particleCategory" value="fukujoshi"> 副助詞 Fukujoshi</label>
+                            <label><input type="radio" name="particleCategory" value="shuujoshi"> 終助詞 Shuujoshi</label>
+                            <label><input type="radio" name="particleCategory" value="all"> Semua</label>
                         </div>
                     </div>
 
