@@ -267,6 +267,32 @@ function initNavigation() {
     const navbar = document.getElementById('navbar');
     const navLinks = document.querySelectorAll('.nav-link');
     const sections = document.querySelectorAll('section');
+    const navToggle = document.getElementById('navToggle');
+    const navLinksContainer = document.getElementById('navLinks');
+
+    if (navToggle && navLinksContainer) {
+        navToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            navToggle.classList.toggle('open');
+            navLinksContainer.classList.toggle('open');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navToggle.contains(e.target) && !navLinksContainer.contains(e.target)) {
+                navToggle.classList.remove('open');
+                navLinksContainer.classList.remove('open');
+            }
+        });
+
+        // Close menu when a link is clicked
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navToggle.classList.remove('open');
+                navLinksContainer.classList.remove('open');
+            });
+        });
+    }
 
     // Scroll tracker for active states
     window.addEventListener('scroll', () => {
