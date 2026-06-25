@@ -247,7 +247,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
+    min-width: 36px;
+    width: auto;
+    padding: 0 6px;
     height: 36px;
     background: linear-gradient(135deg, var(--primary), var(--sakura));
     border-radius: var(--radius-sm);
@@ -1695,3 +1697,29 @@ body {
 [data-theme="light"] .shuujoshi-badge {
     background: rgba(100, 60, 200, 0.1);
 }
+
+/* Modal detail spacing fixes */
+.modal-grammar-details {
+    margin-top: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.modal-detail-row {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    width: 100%;
+}
+
+.detail-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 2px;
+}
+
