@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +8,12 @@
     <meta name="description" content="Module belajar interaktif pola kalimat JLPT N4 dan latihan Kanji Rush 3 Detik.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <!-- Background animated elements -->
     <div class="bg-decoration">
@@ -37,7 +41,8 @@
             <div class="nav-progress-bar" id="progressBar"></div>
             <span class="nav-progress-text" id="progressText">0%</span>
         </div>
-        <div class="theme-toggle" id="themeToggle" title="Ganti mode terang/gelap" role="button" tabindex="0" aria-label="Toggle light/dark theme">
+        <div class="theme-toggle" id="themeToggle" title="Ganti mode terang/gelap" role="button" tabindex="0"
+            aria-label="Toggle light/dark theme">
             <span class="theme-toggle-icon" id="themeIconDark">🌙</span>
             <div class="theme-toggle-track">
                 <div class="theme-toggle-thumb"></div>
@@ -146,14 +151,17 @@
         <div class="chapter-header">
             <div class="chapter-number">助詞</div>
             <h2 class="chapter-title">Partikel Bahasa Jepang</h2>
-            <p class="chapter-subtitle">Panduan lengkap 45 partikel — Kakujoshi, Setsuzokujoshi, Fukujoshi & Shuujoshi</p>
+            <p class="chapter-subtitle">Panduan lengkap 45 partikel — Kakujoshi, Setsuzokujoshi, Fukujoshi & Shuujoshi
+            </p>
         </div>
 
         <!-- Kakujoshi -->
         <div class="particle-category-header">
             <div class="particle-category-badge kakujoshi-badge">格助詞</div>
-            <h3 class="particle-category-title">Kakujoshi <span class="particle-category-sub">(Partikel Kasus)</span></h3>
-            <p class="particle-category-desc">Menandai hubungan gramatikal kata benda dengan predikat: topik, subjek, objek, tempat, arah, dll.</p>
+            <h3 class="particle-category-title">Kakujoshi <span class="particle-category-sub">(Partikel Kasus)</span>
+            </h3>
+            <p class="particle-category-desc">Menandai hubungan gramatikal kata benda dengan predikat: topik, subjek,
+                objek, tempat, arah, dll.</p>
         </div>
         <div class="grammar-grid" id="kakujoshiGrid">
             <!-- Particle cards will be inserted by JS -->
@@ -162,8 +170,10 @@
         <!-- Setsuzokujoshi -->
         <div class="particle-category-header" style="margin-top: 48px;">
             <div class="particle-category-badge setsuzoku-badge">接続助詞</div>
-            <h3 class="particle-category-title">Setsuzokujoshi <span class="particle-category-sub">(Partikel Konjungtif)</span></h3>
-            <p class="particle-category-desc">Menghubungkan klausa atau kalimat: urutan, alasan, kontras, kondisi, dll.</p>
+            <h3 class="particle-category-title">Setsuzokujoshi <span class="particle-category-sub">(Partikel
+                    Konjungtif)</span></h3>
+            <p class="particle-category-desc">Menghubungkan klausa atau kalimat: urutan, alasan, kontras, kondisi, dll.
+            </p>
         </div>
         <div class="grammar-grid" id="setsuzokujoshiGrid">
             <!-- Particle cards will be inserted by JS -->
@@ -172,8 +182,10 @@
         <!-- Fukujoshi -->
         <div class="particle-category-header" style="margin-top: 48px;">
             <div class="particle-category-badge fukujoshi-badge">副助詞</div>
-            <h3 class="particle-category-title">Fukujoshi <span class="particle-category-sub">(Partikel Adverbial)</span></h3>
-            <p class="particle-category-desc">Menambahkan nuansa khusus: inklusivitas, pembatasan, perbandingan, penekanan, dll.</p>
+            <h3 class="particle-category-title">Fukujoshi <span class="particle-category-sub">(Partikel
+                    Adverbial)</span></h3>
+            <p class="particle-category-desc">Menambahkan nuansa khusus: inklusivitas, pembatasan, perbandingan,
+                penekanan, dll.</p>
         </div>
         <div class="grammar-grid" id="fukujoshiGrid">
             <!-- Particle cards will be inserted by JS -->
@@ -182,8 +194,10 @@
         <!-- Shuujoshi -->
         <div class="particle-category-header" style="margin-top: 48px;">
             <div class="particle-category-badge shuujoshi-badge">終助詞</div>
-            <h3 class="particle-category-title">Shuujoshi <span class="particle-category-sub">(Partikel Akhir Kalimat)</span></h3>
-            <p class="particle-category-desc">Diletakkan di akhir kalimat untuk mengekspresikan nuansa emosi, konfirmasi, pertanyaan, dll.</p>
+            <h3 class="particle-category-title">Shuujoshi <span class="particle-category-sub">(Partikel Akhir
+                    Kalimat)</span></h3>
+            <p class="particle-category-desc">Diletakkan di akhir kalimat untuk mengekspresikan nuansa emosi,
+                konfirmasi, pertanyaan, dll.</p>
         </div>
         <div class="grammar-grid" id="shuujoshiGrid">
             <!-- Particle cards will be inserted by JS -->
@@ -197,7 +211,7 @@
             <div class="modal-kanji" id="modal-kanji">漢字</div>
             <div class="modal-reading" id="modal-reading">かんじ</div>
             <div class="modal-meaning" id="modal-meaning">Kanji</div>
-            
+
             <!-- Grammar Specific Fields (hidden by default) -->
             <div id="modal-grammar-details" class="modal-grammar-details hidden">
                 <div class="modal-detail-row">
@@ -220,9 +234,10 @@
                     <!-- Parsed example will be injected here -->
                 </div>
             </div>
-            
+
             <div class="modal-actions" style="margin-top: 20px;">
-                <button id="btn-toggle-learned" class="btn-primary btn-large" style="width: 100%;">📌 Tandai Sudah Dipelajari</button>
+                <button id="btn-toggle-learned" class="btn-primary btn-large" style="width: 100%;">📌 Tandai Sudah
+                    Dipelajari</button>
             </div>
         </div>
     </div>
@@ -234,9 +249,9 @@
             <h2 class="chapter-title">Kuis Interaktif</h2>
             <p class="chapter-subtitle">Uji pemahamanmu tentang Kanji & Tata Bahasa JLPT N4!</p>
         </div>
-        
+
         <div class="quiz-container" id="quizContainer">
-            
+
             <!-- Quiz Config Screen -->
             <div id="start-screen" class="screen active">
                 <div class="glass-card intro-card" style="margin: 0; max-width: 100%;">
@@ -244,7 +259,8 @@
                     <div class="settings-group">
                         <p class="settings-title">Pilih Mode Kuis:</p>
                         <div class="mode-toggle-container">
-                            <button type="button" id="mode-kanji" class="btn-mode active">🌸 Kanji Rush (3 Detik)</button>
+                            <button type="button" id="mode-kanji" class="btn-mode active">🌸 Kanji Rush (3
+                                Detik)</button>
                             <button type="button" id="mode-grammar" class="btn-mode">📚 Kuis Tata Bahasa</button>
                             <button type="button" id="mode-particle" class="btn-mode">🔤 Kuis Partikel</button>
                         </div>
@@ -260,7 +276,8 @@
 
                     <div id="setting-grammar-group" class="settings-group hidden">
                         <p class="settings-title">Pilih Bab Tata Bahasa:</p>
-                        <div class="radio-group" style="justify-content: center; display: flex; gap: 15px; flex-wrap: wrap;">
+                        <div class="radio-group"
+                            style="justify-content: center; display: flex; gap: 15px; flex-wrap: wrap;">
                             <label><input type="radio" name="grammarBab" value="1" checked> Bab 1</label>
                             <label><input type="radio" name="grammarBab" value="2"> Bab 2</label>
                             <label><input type="radio" name="grammarBab" value="3"> Bab 3</label>
@@ -270,9 +287,12 @@
 
                     <div id="setting-particle-group" class="settings-group hidden">
                         <p class="settings-title">Pilih Kategori Partikel:</p>
-                        <div class="radio-group" style="justify-content: center; display: flex; gap: 15px; flex-wrap: wrap;">
-                            <label><input type="radio" name="particleCategory" value="kakujoshi" checked> 格助詞 Kakujoshi</label>
-                            <label><input type="radio" name="particleCategory" value="setsuzokujoshi"> 接続 Setsuzoku</label>
+                        <div class="radio-group"
+                            style="justify-content: center; display: flex; gap: 15px; flex-wrap: wrap;">
+                            <label><input type="radio" name="particleCategory" value="kakujoshi" checked> 格助詞
+                                Kakujoshi</label>
+                            <label><input type="radio" name="particleCategory" value="setsuzokujoshi"> 接続
+                                Setsuzoku</label>
                             <label><input type="radio" name="particleCategory" value="fukujoshi"> 副助詞 Fukujoshi</label>
                             <label><input type="radio" name="particleCategory" value="shuujoshi"> 終助詞 Shuujoshi</label>
                             <label><input type="radio" name="particleCategory" value="all"> Semua</label>
@@ -295,16 +315,19 @@
 
             <!-- Quiz Active Screen (Flashcard / MCQ) -->
             <div id="flashcard-screen" class="screen" style="display:none;">
-                <div class="quiz-header" style="justify-content: space-between; margin-bottom: 20px; display: flex; align-items: center;">
-                    <div class="quiz-score" style="font-weight: 600;">Benar: <span id="score-correct" class="text-success">0</span></div>
-                    <div class="quiz-score" style="font-weight: 600;">Salah: <span id="score-incorrect" class="text-danger">0</span></div>
+                <div class="quiz-header"
+                    style="justify-content: space-between; margin-bottom: 20px; display: flex; align-items: center;">
+                    <div class="quiz-score" style="font-weight: 600;">Benar: <span id="score-correct"
+                            class="text-success">0</span></div>
+                    <div class="quiz-score" style="font-weight: 600;">Salah: <span id="score-incorrect"
+                            class="text-danger">0</span></div>
                     <div class="quiz-score" style="font-weight: 600;">Sisa: <span id="score-remaining">0</span></div>
                 </div>
 
                 <div class="timer-container">
                     <div class="timer-bar" id="timer-bar"></div>
                 </div>
-                
+
                 <div class="flashcard-container" id="flashcard" style="margin: 0 auto;">
                     <div class="flashcard-inner">
                         <!-- Front -->
@@ -333,13 +356,17 @@
                 </div>
 
                 <div class="controls hidden" style="margin-top: 20px;">
-                    <button id="btn-reveal" class="btn-primary btn-large" style="width: 100%;">Buka Jawaban (Spasi)</button>
-                    <div id="score-controls" class="score-controls hidden" style="display: flex; gap: 10px; width: 100%;">
+                    <button id="btn-reveal" class="btn-primary btn-large" style="width: 100%;">Buka Jawaban
+                        (Spasi)</button>
+                    <div id="score-controls" class="score-controls hidden"
+                        style="display: flex; gap: 10px; width: 100%;">
                         <button id="btn-wrong" class="btn-danger" style="flex:1; padding: 15px;">Lupa (Kiri)</button>
-                        <button id="btn-correct" class="btn-success" style="flex:1; padding: 15px;">Hafal (Kanan)</button>
+                        <button id="btn-correct" class="btn-success" style="flex:1; padding: 15px;">Hafal
+                            (Kanan)</button>
                     </div>
                 </div>
-                <button id="btn-quiz-back" class="btn-secondary btn-large btn-back-quiz" style="margin-top: 15px; width:100%;">Berhenti Kuis</button>
+                <button id="btn-quiz-back" class="btn-secondary btn-large btn-back-quiz"
+                    style="margin-top: 15px; width:100%;">Berhenti Kuis</button>
             </div>
 
             <!-- Quiz Result Screen -->
@@ -369,7 +396,7 @@
                 <span>JLPT N4 JLPT</span>
             </div>
             <p class="footer-note">
-                Module belajar JLPT N4 digabung dengan fitur Kanji Rush 3 Detik!
+                Belajar JLPT N4 digabung dengan fitur Kanji dan Bunpou!
             </p>
             <p class="footer-copy">© 2026 • Selamat belajar! 頑張ってね！ 🌸</p>
         </div>
@@ -378,4 +405,5 @@
     <script src="data.js?v=2"></script>
     <script src="app.js?v=2"></script>
 </body>
+
 </html>
